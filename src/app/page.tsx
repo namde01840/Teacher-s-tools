@@ -18,7 +18,6 @@ import {
   Target,
   Sparkles,
   Bell,
-  Star,
   ArrowLeft,
 } from "lucide-react";
 
@@ -35,13 +34,6 @@ const tabs = [
   { id: "polish" as TabId, label: "공문/메시지 교정", sub: "공문/메시지", desc: "격식있는 공문과 메시지로 교정합니다", icon: MessageSquare, color: "#00B493", bg: "#E5F6F2", cardBg: "from-[#E5F6F2] to-[#D0F0E8]" },
 ];
 
-const templateCards = [
-  { title: "생기부 표준형 문구", tag: "생기부", tagColor: "#3182F6", tagBg: "#E8F3FF", bg: "from-[#E8F3FF] to-[#D4E8FF]", accent: "#3182F6", pages: "3가지 버전", tabId: "record" as TabId },
-  { title: "현장학습 안전 계획", tag: "안전", tagColor: "#F04452", tagBg: "#FFE8EA", bg: "from-[#FFE8EA] to-[#FFD4D8]", accent: "#F04452", pages: "위험분석표", tabId: "safety" as TabId },
-  { title: "학부모 상담 안내문", tag: "행정", tagColor: "#00B493", tagBg: "#E5F6F2", bg: "from-[#E5F6F2] to-[#D0F0E8]", accent: "#00B493", pages: "3가지 톤", tabId: "polish" as TabId },
-  { title: "교육청 보고 공문", tag: "행정", tagColor: "#00B493", tagBg: "#E5F6F2", bg: "from-[#D4E8FF] to-[#E8F3FF]", accent: "#3182F6", pages: "격식체", tabId: "polish" as TabId },
-  { title: "등산 체험학습 안전", tag: "안전", tagColor: "#F04452", tagBg: "#FFE8EA", bg: "from-[#FFF3E0] to-[#FFE0B2]", accent: "#FF9800", pages: "위험분석표", tabId: "safety" as TabId },
-];
 
 const areaOptions = [
   { id: "haengbal", label: "행발" },
@@ -275,7 +267,6 @@ export default function SuperTeacherDemo() {
                     <div className="p-7">
                       <div className="flex items-center gap-2.5 mb-3">
                         <span className="text-[13px] font-bold px-3 py-1 rounded-lg" style={{ color: tab.color, backgroundColor: tab.bg }}>{tab.sub}</span>
-                        <Star size={15} className="text-[#D1D6DB] ml-auto" />
                       </div>
                       <p className="text-[18px] font-extrabold text-[#1B1D1F] tracking-[-0.03em]">{tab.label}</p>
                       <p className="text-[14px] text-[#8B95A1] mt-2 tracking-[-0.01em] leading-relaxed">{tab.desc}</p>
@@ -286,33 +277,6 @@ export default function SuperTeacherDemo() {
             </div>
           </div>
 
-          {/* Template Cards */}
-          <div className={`${CONTAINER} pt-16 pb-24`}>
-            <h2 className="text-[22px] font-extrabold text-[#1B1D1F] tracking-[-0.03em] mb-10 flex items-center gap-2.5">
-              추천 템플릿 <Sparkles size={20} className="text-[#FFB800]" />
-            </h2>
-            <div className="grid grid-cols-2 md:grid-cols-5 gap-5">
-              {templateCards.map((card, idx) => (
-                <button
-                  key={idx}
-                  onClick={() => openTool(card.tabId)}
-                  className="bg-white rounded-2xl border border-[#EAECEF] overflow-hidden hover:shadow-lg transition-all text-left group"
-                >
-                  <div className={`h-[120px] bg-gradient-to-br ${card.bg} flex items-center justify-center`}>
-                    <span className="text-[14px] font-bold tracking-[-0.02em] px-4 text-center leading-snug" style={{ color: card.accent }}>{card.title}</span>
-                  </div>
-                  <div className="px-5 py-4">
-                    <div className="flex items-center justify-between">
-                      <span className="text-[11px] font-bold px-2.5 py-0.5 rounded" style={{ color: card.tagColor, backgroundColor: card.tagBg }}>{card.tag}</span>
-                      <Star size={13} className="text-[#D1D6DB]" />
-                    </div>
-                    <p className="text-[14px] font-bold text-[#333D4B] mt-3 tracking-[-0.01em]">{card.title}</p>
-                    <p className="text-[12px] text-[#8B95A1] mt-1">{card.pages}</p>
-                  </div>
-                </button>
-              ))}
-            </div>
-          </div>
         </div>
       )}
 
