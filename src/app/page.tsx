@@ -217,7 +217,7 @@ export default function SuperTeacherDemo() {
 
       {/* ===== Header ===== */}
       <header className="bg-white border-b border-[#EAECEF] sticky top-0 z-50">
-        <div className="w-full max-w-[1080px] mx-auto px-6 md:px-16 lg:px-20 h-[64px] flex items-center justify-between">
+        <div className="w-full max-w-[1400px] mx-auto px-8 sm:px-12 md:px-20 lg:px-32 xl:px-40 h-[64px] flex items-center justify-between">
           <button onClick={goHome} className="flex items-center gap-3 hover:opacity-80 transition-opacity">
             <div className="w-9 h-9 rounded-xl bg-[#3182F6] flex items-center justify-center">
               <span className="text-white text-[14px] font-bold">T</span>
@@ -246,7 +246,7 @@ export default function SuperTeacherDemo() {
             <div className="absolute bottom-[-30px] right-[-20px] w-[180px] h-[180px] rounded-full bg-[#3182F6]/[0.04]" />
             <div className="absolute bottom-[30px] left-[30%] w-[100px] h-[100px] rounded-full bg-white/20" />
 
-            <div className="w-full max-w-[1080px] mx-auto px-6 md:px-16 lg:px-20 py-16 md:py-20 relative z-10 text-center">
+            <div className="w-full max-w-[1400px] mx-auto px-8 sm:px-12 md:px-20 lg:px-32 xl:px-40 py-16 md:py-20 relative z-10 text-center">
               <h1 className="text-[32px] md:text-[40px] font-extrabold text-[#1B1D1F] leading-[1.4] tracking-[-0.03em]">
                 오늘은 어떤 업무를<br />도와드릴까요?
               </h1>
@@ -257,7 +257,7 @@ export default function SuperTeacherDemo() {
           </section>
 
           {/* Quick Actions */}
-          <div className="w-full max-w-[1080px] mx-auto px-6 md:px-16 lg:px-20">
+          <div className="w-full max-w-[1400px] mx-auto px-8 sm:px-12 md:px-20 lg:px-32 xl:px-40">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5 py-10">
               <button
                 onClick={() => openTool("record")}
@@ -293,7 +293,7 @@ export default function SuperTeacherDemo() {
           </div>
 
           {/* Tool Cards Section */}
-          <div className="w-full max-w-[1080px] mx-auto px-6 md:px-16 lg:px-20 pb-6">
+          <div className="w-full max-w-[1400px] mx-auto px-8 sm:px-12 md:px-20 lg:px-32 xl:px-40 pb-6">
             <h2 className="text-[20px] font-bold text-[#1B1D1F] tracking-[-0.02em] mb-6">
               교사 업무를 위한 AI 도구
             </h2>
@@ -325,7 +325,7 @@ export default function SuperTeacherDemo() {
           </div>
 
           {/* Template Cards */}
-          <div className="w-full max-w-[1080px] mx-auto px-6 md:px-16 lg:px-20 pt-6 pb-16">
+          <div className="w-full max-w-[1400px] mx-auto px-8 sm:px-12 md:px-20 lg:px-32 xl:px-40 pt-6 pb-16">
             <h2 className="text-[20px] font-bold text-[#1B1D1F] tracking-[-0.02em] mb-6 flex items-center gap-2">
               추천 템플릿 <Sparkles size={18} className="text-[#FFB800]" />
             </h2>
@@ -356,7 +356,7 @@ export default function SuperTeacherDemo() {
 
       {/* ===== TOOL VIEW ===== */}
       {view === "tool" && (
-        <main className="w-full max-w-[1080px] mx-auto px-6 md:px-16 lg:px-20 py-8">
+        <main className="w-full max-w-[1400px] mx-auto px-8 sm:px-12 md:px-20 lg:px-32 xl:px-40 py-8">
 
           {/* Breadcrumb */}
           <button onClick={goHome} className="flex items-center gap-2 text-[14px] text-[#8B95A1] hover:text-[#4E5968] transition-colors mb-6 group">
@@ -756,7 +756,7 @@ export default function SuperTeacherDemo() {
 
       {/* ===== Footer ===== */}
       <footer className="bg-white border-t border-[#EAECEF] mt-auto">
-        <div className="w-full max-w-[1080px] mx-auto px-6 md:px-16 lg:px-20 py-8 flex items-center justify-between">
+        <div className="w-full max-w-[1400px] mx-auto px-8 sm:px-12 md:px-20 lg:px-32 xl:px-40 py-8 flex items-center justify-between">
           <p className="text-[13px] text-[#B0B8C1] tracking-[-0.01em]">&copy; 2026 Teacher Tools - AI 기반 교사 업무 도우미 (Demo)</p>
           <p className="text-[12px] text-[#D1D6DB] tracking-[-0.01em]">Powered by AI</p>
         </div>
