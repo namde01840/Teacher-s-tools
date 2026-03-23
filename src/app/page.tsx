@@ -339,24 +339,24 @@ export default function SuperTeacherDemo() {
               <div className="bg-white rounded-3xl shadow-sm border border-[#EAECEF] p-10 animate-fade-in">
 
                 {/* Card Header */}
-                <div className="flex items-center justify-between mb-10">
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ backgroundColor: at.bg }}>
+                <div className="flex items-center justify-between mb-10 gap-4">
+                  <div className="flex items-center gap-3 shrink-0">
+                    <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0" style={{ backgroundColor: at.bg }}>
                       {activeTab === "record" && <Edit3 size={18} style={{ color: at.color }} />}
                       {activeTab === "safety" && <ShieldCheck size={18} style={{ color: at.color }} />}
                       {activeTab === "polish" && <MessageSquare size={18} style={{ color: at.color }} />}
                     </div>
-                    <span className="text-[19px] font-extrabold text-[#1B1D1F] tracking-[-0.03em]">
+                    <span className="text-[19px] font-extrabold text-[#1B1D1F] tracking-[-0.03em] whitespace-nowrap">
                       {activeTab === "record" && "학생 정보 입력"}
                       {activeTab === "safety" && "체험학습 정보"}
                       {activeTab === "polish" && "메시지 초안"}
                     </span>
                   </div>
-                  <div className="flex gap-3">
-                    <button onClick={loadSample} className="text-[13px] font-bold px-5 py-2.5 rounded-full transition-all hover:shadow-sm" style={{ color: at.color, backgroundColor: at.bg }}>
+                  <div className="flex gap-3 shrink-0">
+                    <button onClick={loadSample} className="text-[13px] font-bold px-5 py-2.5 rounded-full transition-all hover:shadow-sm whitespace-nowrap" style={{ color: at.color, backgroundColor: at.bg }}>
                       예시 불러오기
                     </button>
-                    <button onClick={() => handleReset()} className="text-[13px] text-[#8B95A1] hover:text-[#4E5968] flex items-center gap-1.5 bg-[#F7F8FA] px-5 py-2.5 rounded-full transition-all">
+                    <button onClick={() => handleReset()} className="text-[13px] text-[#8B95A1] hover:text-[#4E5968] flex items-center gap-1.5 bg-[#F7F8FA] px-5 py-2.5 rounded-full transition-all whitespace-nowrap">
                       <RotateCcw size={13} /> 초기화
                     </button>
                   </div>
