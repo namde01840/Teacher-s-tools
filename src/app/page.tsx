@@ -26,7 +26,13 @@ import {
 type TabId = "record" | "safety" | "polish";
 type ViewMode = "home" | "tool";
 
-const CONTAINER = "w-[92%] sm:w-[88%] md:w-[82%] lg:w-[75%] xl:w-[70%] max-w-[1100px] mx-auto";
+const containerStyle: React.CSSProperties = {
+  maxWidth: "1100px",
+  marginLeft: "auto",
+  marginRight: "auto",
+  paddingLeft: "clamp(24px, 5vw, 120px)",
+  paddingRight: "clamp(24px, 5vw, 120px)",
+};
 
 const tabs = [
   { id: "record" as TabId, label: "생기부 문구 변환", sub: "생기부", desc: "핵심 키워드로 생기부 문구를 자동 생성합니다", icon: Edit3, color: "#3182F6", bg: "#E8F3FF", cardBg: "from-[#E8F3FF] to-[#D4E8FF]" },
@@ -206,7 +212,7 @@ export default function SuperTeacherDemo() {
 
       {/* ===== Header ===== */}
       <header className="bg-white border-b border-[#EAECEF] sticky top-0 z-50">
-        <div className={`${CONTAINER} h-[72px] flex items-center justify-between`}>
+        <div style={containerStyle} className="h-[72px] flex items-center justify-between">
           <button onClick={goHome} className="flex items-center gap-3 hover:opacity-80 transition-opacity">
             <div className="w-10 h-10 rounded-xl bg-[#3182F6] flex items-center justify-center">
               <span className="text-white text-[15px] font-bold">T</span>
@@ -236,7 +242,7 @@ export default function SuperTeacherDemo() {
             <div className="absolute bottom-[-40px] right-[-30px] w-[220px] h-[220px] rounded-full bg-[#3182F6]/[0.04]" />
             <div className="absolute bottom-[20px] left-[25%] w-[120px] h-[120px] rounded-full bg-white/20" />
 
-            <div className={`${CONTAINER} py-20 md:py-28 relative z-10 text-center`}>
+            <div style={containerStyle} className="py-20 md:py-28 relative z-10 text-center">
               <h1 className="text-[36px] md:text-[46px] font-extrabold text-[#1B1D1F] leading-[1.35] tracking-[-0.04em]">
                 오늘은 어떤 업무를<br />도와드릴까요?
               </h1>
@@ -247,7 +253,7 @@ export default function SuperTeacherDemo() {
           </section>
 
           {/* Tool Cards Section */}
-          <div className={`${CONTAINER} pt-20 pb-10`}>
+          <div style={containerStyle} className="pt-20 pb-10">
             <h2 className="text-[22px] font-extrabold text-[#1B1D1F] tracking-[-0.03em] mb-10">
               교사 업무를 위한 AI 도구
             </h2>
@@ -282,7 +288,7 @@ export default function SuperTeacherDemo() {
 
       {/* ===== TOOL VIEW ===== */}
       {view === "tool" && (
-        <main className={`${CONTAINER} py-12 flex-1`}>
+        <main style={containerStyle} className="py-12 flex-1">
 
           {/* Breadcrumb */}
           <button onClick={goHome} className="flex items-center gap-2 text-[15px] text-[#8B95A1] hover:text-[#4E5968] transition-colors mb-10 group">
@@ -682,7 +688,7 @@ export default function SuperTeacherDemo() {
 
       {/* ===== Footer ===== */}
       <footer className="bg-white border-t border-[#EAECEF] mt-auto">
-        <div className={`${CONTAINER} py-10 flex items-center justify-between`}>
+        <div style={containerStyle} className="py-10 flex items-center justify-between">
           <p className="text-[14px] text-[#B0B8C1] tracking-[-0.01em]">&copy; 2026 Teacher Tools - AI 기반 교사 업무 도우미 (Demo)</p>
           <p className="text-[13px] text-[#D1D6DB] tracking-[-0.01em]">Powered by AI</p>
         </div>
