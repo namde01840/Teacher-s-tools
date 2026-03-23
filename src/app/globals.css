@@ -7,10 +7,10 @@
   --font-sans: 'Wanted Sans Variable', 'Wanted Sans', var(--font-geist-sans);
 }
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+@layer base {
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
 }
 
 html {
