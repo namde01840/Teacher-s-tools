@@ -18,9 +18,6 @@ import {
   Target,
   Sparkles,
   Bell,
-  Plus,
-  FolderOpen,
-  School,
   Star,
   ArrowLeft,
 } from "lucide-react";
@@ -30,10 +27,12 @@ import {
 type TabId = "record" | "safety" | "polish";
 type ViewMode = "home" | "tool";
 
+const CONTAINER = "w-full max-w-[1200px] mx-auto px-6 sm:px-10 md:px-16 lg:px-20";
+
 const tabs = [
-  { id: "record" as TabId, label: "Magic Record", sub: "생기부 문구 변환", desc: "핵심 키워드로 생기부 문구를 자동 생성합니다", icon: Edit3, color: "#3182F6", bg: "#E8F3FF", cardBg: "from-[#E8F3FF] to-[#D4E8FF]" },
-  { id: "safety" as TabId, label: "Safe Trip", sub: "안전 시나리오 생성", desc: "체험학습 안전 대책을 자동으로 작성합니다", icon: ShieldCheck, color: "#F04452", bg: "#FFE8EA", cardBg: "from-[#FFE8EA] to-[#FFD4D8]" },
-  { id: "polish" as TabId, label: "Pro Polisher", sub: "공문/메시지 교정", desc: "격식있는 공문과 메시지로 교정합니다", icon: MessageSquare, color: "#00B493", bg: "#E5F6F2", cardBg: "from-[#E5F6F2] to-[#D0F0E8]" },
+  { id: "record" as TabId, label: "생기부 문구 변환", sub: "생기부", desc: "핵심 키워드로 생기부 문구를 자동 생성합니다", icon: Edit3, color: "#3182F6", bg: "#E8F3FF", cardBg: "from-[#E8F3FF] to-[#D4E8FF]" },
+  { id: "safety" as TabId, label: "안전 시나리오 생성", sub: "안전", desc: "체험학습 안전 대책을 자동으로 작성합니다", icon: ShieldCheck, color: "#F04452", bg: "#FFE8EA", cardBg: "from-[#FFE8EA] to-[#FFD4D8]" },
+  { id: "polish" as TabId, label: "공문/메시지 교정", sub: "공문/메시지", desc: "격식있는 공문과 메시지로 교정합니다", icon: MessageSquare, color: "#00B493", bg: "#E5F6F2", cardBg: "from-[#E5F6F2] to-[#D0F0E8]" },
 ];
 
 const templateCards = [
@@ -160,9 +159,7 @@ export default function SuperTeacherDemo() {
     handleReset(tabId);
   };
 
-  const goHome = () => {
-    setView("home");
-  };
+  const goHome = () => setView("home");
 
   const handleGenerate = useCallback(() => {
     setIsGenerating(true);
@@ -213,23 +210,23 @@ export default function SuperTeacherDemo() {
   const inputCls = "w-full pl-14 pr-6 py-[18px] border border-[#E5E8EB] rounded-2xl focus:ring-2 focus:outline-none bg-[#FAFAFB] text-[16px] text-[#1B1D1F] placeholder:text-[#B0B8C1] transition-all leading-normal tracking-[-0.01em]";
 
   return (
-    <div className="min-h-screen bg-[#F7F8FA]">
+    <div className="min-h-screen bg-[#F7F8FA] flex flex-col">
 
       {/* ===== Header ===== */}
       <header className="bg-white border-b border-[#EAECEF] sticky top-0 z-50">
-        <div className="w-full max-w-[1400px] mx-auto px-8 sm:px-12 md:px-20 lg:px-32 xl:px-40 h-[64px] flex items-center justify-between">
+        <div className={`${CONTAINER} h-[72px] flex items-center justify-between`}>
           <button onClick={goHome} className="flex items-center gap-3 hover:opacity-80 transition-opacity">
-            <div className="w-9 h-9 rounded-xl bg-[#3182F6] flex items-center justify-center">
-              <span className="text-white text-[14px] font-bold">T</span>
+            <div className="w-10 h-10 rounded-xl bg-[#3182F6] flex items-center justify-center">
+              <span className="text-white text-[15px] font-bold">T</span>
             </div>
-            <span className="text-[18px] font-bold text-[#1B1D1F] tracking-[-0.03em]">Teacher Tools</span>
+            <span className="text-[20px] font-extrabold text-[#1B1D1F] tracking-[-0.04em]">Teacher Tools</span>
           </button>
-          <div className="flex items-center gap-3">
-            <button className="relative w-10 h-10 rounded-full bg-[#F2F4F6] flex items-center justify-center hover:bg-[#E5E8EB] transition-colors">
-              <Bell size={18} className="text-[#6B7684]" />
+          <div className="flex items-center gap-4">
+            <button className="relative w-11 h-11 rounded-full bg-[#F2F4F6] flex items-center justify-center hover:bg-[#E5E8EB] transition-colors">
+              <Bell size={19} className="text-[#6B7684]" />
               <span className="absolute -top-0.5 -right-0.5 w-[18px] h-[18px] bg-[#F04452] rounded-full text-white text-[10px] font-bold flex items-center justify-center">2</span>
             </button>
-            <div className="w-10 h-10 rounded-full bg-[#3182F6] flex items-center justify-center text-white text-[13px] font-bold cursor-pointer">
+            <div className="w-11 h-11 rounded-full bg-[#3182F6] flex items-center justify-center text-white text-[14px] font-bold cursor-pointer">
               DA
             </div>
           </div>
@@ -238,85 +235,50 @@ export default function SuperTeacherDemo() {
 
       {/* ===== HOME VIEW ===== */}
       {view === "home" && (
-        <>
+        <div className="flex-1">
+
           {/* Hero */}
           <section className="relative overflow-hidden bg-gradient-to-br from-[#E8F3FF] via-[#EEF2FF] to-[#E0ECFF]">
-            <div className="absolute top-[-60px] left-[-40px] w-[200px] h-[200px] rounded-full bg-[#3182F6]/[0.06]" />
-            <div className="absolute top-[20px] right-[10%] w-[140px] h-[140px] rounded-full bg-[#3182F6]/[0.05]" />
-            <div className="absolute bottom-[-30px] right-[-20px] w-[180px] h-[180px] rounded-full bg-[#3182F6]/[0.04]" />
-            <div className="absolute bottom-[30px] left-[30%] w-[100px] h-[100px] rounded-full bg-white/20" />
+            <div className="absolute top-[-80px] left-[-60px] w-[250px] h-[250px] rounded-full bg-[#3182F6]/[0.06]" />
+            <div className="absolute top-[10px] right-[8%] w-[180px] h-[180px] rounded-full bg-[#3182F6]/[0.05]" />
+            <div className="absolute bottom-[-40px] right-[-30px] w-[220px] h-[220px] rounded-full bg-[#3182F6]/[0.04]" />
+            <div className="absolute bottom-[20px] left-[25%] w-[120px] h-[120px] rounded-full bg-white/20" />
 
-            <div className="w-full max-w-[1400px] mx-auto px-8 sm:px-12 md:px-20 lg:px-32 xl:px-40 py-16 md:py-20 relative z-10 text-center">
-              <h1 className="text-[32px] md:text-[40px] font-extrabold text-[#1B1D1F] leading-[1.4] tracking-[-0.03em]">
+            <div className={`${CONTAINER} py-20 md:py-28 relative z-10 text-center`}>
+              <h1 className="text-[36px] md:text-[46px] font-extrabold text-[#1B1D1F] leading-[1.35] tracking-[-0.04em]">
                 오늘은 어떤 업무를<br />도와드릴까요?
               </h1>
-              <p className="text-[16px] md:text-[17px] text-[#6B7684] mt-4 leading-relaxed tracking-[-0.01em]">
+              <p className="text-[17px] md:text-[19px] text-[#6B7684] mt-6 leading-relaxed tracking-[-0.01em]">
                 AI가 선생님의 반복 업무를 빠르게 처리해 드립니다
               </p>
             </div>
           </section>
 
-          {/* Quick Actions */}
-          <div className="w-full max-w-[1400px] mx-auto px-8 sm:px-12 md:px-20 lg:px-32 xl:px-40">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5 py-10">
-              <button
-                onClick={() => openTool("record")}
-                className="bg-white rounded-2xl px-6 py-6 flex items-center gap-5 border border-[#EAECEF] hover:shadow-md hover:border-[#D1D6DB] transition-all text-left group"
-              >
-                <div className="w-[52px] h-[52px] rounded-2xl bg-[#E8F3FF] flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
-                  <Plus size={24} className="text-[#3182F6]" />
-                </div>
-                <div>
-                  <p className="text-[16px] font-bold text-[#1B1D1F] tracking-[-0.02em]">새로 만들기</p>
-                  <p className="text-[14px] text-[#8B95A1] mt-1 tracking-[-0.01em]">AI와 함께 처음부터 제작</p>
-                </div>
-              </button>
-              <button className="bg-white rounded-2xl px-6 py-6 flex items-center gap-5 border border-[#EAECEF] hover:shadow-md hover:border-[#D1D6DB] transition-all text-left group">
-                <div className="w-[52px] h-[52px] rounded-2xl bg-[#F2F4F6] flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
-                  <FolderOpen size={24} className="text-[#6B7684]" />
-                </div>
-                <div>
-                  <p className="text-[16px] font-bold text-[#1B1D1F] tracking-[-0.02em]">내 작업</p>
-                  <p className="text-[14px] text-[#8B95A1] mt-1 tracking-[-0.01em]">이전에 만든 자료 수정</p>
-                </div>
-              </button>
-              <button className="bg-white rounded-2xl px-6 py-6 flex items-center gap-5 border border-[#EAECEF] hover:shadow-md hover:border-[#D1D6DB] transition-all text-left group">
-                <div className="w-[52px] h-[52px] rounded-2xl bg-[#F0EDFF] flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
-                  <School size={24} className="text-[#6C63FF]" />
-                </div>
-                <div>
-                  <p className="text-[16px] font-bold text-[#1B1D1F] tracking-[-0.02em]">우리 학교 템플릿</p>
-                  <p className="text-[14px] text-[#8B95A1] mt-1 tracking-[-0.01em]">같은 학교 선생님들과 공유</p>
-                </div>
-              </button>
-            </div>
-          </div>
-
           {/* Tool Cards Section */}
-          <div className="w-full max-w-[1400px] mx-auto px-8 sm:px-12 md:px-20 lg:px-32 xl:px-40 pb-6">
-            <h2 className="text-[20px] font-bold text-[#1B1D1F] tracking-[-0.02em] mb-6">
+          <div className={`${CONTAINER} pt-20 pb-10`}>
+            <h2 className="text-[22px] font-extrabold text-[#1B1D1F] tracking-[-0.03em] mb-10">
               교사 업무를 위한 AI 도구
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {tabs.map((tab) => {
                 const Icon = tab.icon;
                 return (
                   <button
                     key={tab.id}
                     onClick={() => openTool(tab.id)}
-                    className="bg-white rounded-2xl border border-[#EAECEF] overflow-hidden hover:shadow-lg hover:border-transparent transition-all text-left group"
+                    className="bg-white rounded-3xl border border-[#EAECEF] overflow-hidden hover:shadow-xl hover:border-transparent transition-all text-left group"
                   >
-                    <div className={`h-[140px] bg-gradient-to-br ${tab.cardBg} flex items-center justify-center relative`}>
-                      <Icon size={48} style={{ color: tab.color }} className="opacity-30 group-hover:opacity-50 transition-opacity group-hover:scale-110 transition-transform" />
-                      <div className="absolute bottom-3 right-3 w-[60px] h-[60px] rounded-full opacity-10" style={{ backgroundColor: tab.color }} />
+                    <div className={`h-[180px] bg-gradient-to-br ${tab.cardBg} flex items-center justify-center relative`}>
+                      <Icon size={56} style={{ color: tab.color }} className="opacity-25 group-hover:opacity-45 transition-opacity group-hover:scale-110 duration-300" />
+                      <div className="absolute bottom-4 right-4 w-[70px] h-[70px] rounded-full opacity-10" style={{ backgroundColor: tab.color }} />
                     </div>
-                    <div className="p-5">
-                      <div className="flex items-center gap-2 mb-2">
-                        <span className="text-[12px] font-bold px-2.5 py-1 rounded-md" style={{ color: tab.color, backgroundColor: tab.bg }}>{tab.sub.split(" ")[0]}</span>
-                        <Star size={14} className="text-[#D1D6DB] ml-auto" />
+                    <div className="p-7">
+                      <div className="flex items-center gap-2.5 mb-3">
+                        <span className="text-[13px] font-bold px-3 py-1 rounded-lg" style={{ color: tab.color, backgroundColor: tab.bg }}>{tab.sub}</span>
+                        <Star size={15} className="text-[#D1D6DB] ml-auto" />
                       </div>
-                      <p className="text-[15px] font-bold text-[#1B1D1F] tracking-[-0.02em]">{tab.label}</p>
-                      <p className="text-[13px] text-[#8B95A1] mt-1 tracking-[-0.01em]">{tab.desc}</p>
+                      <p className="text-[18px] font-extrabold text-[#1B1D1F] tracking-[-0.03em]">{tab.label}</p>
+                      <p className="text-[14px] text-[#8B95A1] mt-2 tracking-[-0.01em] leading-relaxed">{tab.desc}</p>
                     </div>
                   </button>
                 );
@@ -325,47 +287,47 @@ export default function SuperTeacherDemo() {
           </div>
 
           {/* Template Cards */}
-          <div className="w-full max-w-[1400px] mx-auto px-8 sm:px-12 md:px-20 lg:px-32 xl:px-40 pt-6 pb-16">
-            <h2 className="text-[20px] font-bold text-[#1B1D1F] tracking-[-0.02em] mb-6 flex items-center gap-2">
-              추천 템플릿 <Sparkles size={18} className="text-[#FFB800]" />
+          <div className={`${CONTAINER} pt-16 pb-24`}>
+            <h2 className="text-[22px] font-extrabold text-[#1B1D1F] tracking-[-0.03em] mb-10 flex items-center gap-2.5">
+              추천 템플릿 <Sparkles size={20} className="text-[#FFB800]" />
             </h2>
-            <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+            <div className="grid grid-cols-2 md:grid-cols-5 gap-5">
               {templateCards.map((card, idx) => (
                 <button
                   key={idx}
                   onClick={() => openTool(card.tabId)}
-                  className="bg-white rounded-2xl border border-[#EAECEF] overflow-hidden hover:shadow-md transition-all text-left group"
+                  className="bg-white rounded-2xl border border-[#EAECEF] overflow-hidden hover:shadow-lg transition-all text-left group"
                 >
-                  <div className={`h-[100px] bg-gradient-to-br ${card.bg} flex items-center justify-center`}>
-                    <span className="text-[14px] font-bold tracking-[-0.02em]" style={{ color: card.accent }}>{card.title}</span>
+                  <div className={`h-[120px] bg-gradient-to-br ${card.bg} flex items-center justify-center`}>
+                    <span className="text-[14px] font-bold tracking-[-0.02em] px-4 text-center leading-snug" style={{ color: card.accent }}>{card.title}</span>
                   </div>
-                  <div className="px-4 py-3">
+                  <div className="px-5 py-4">
                     <div className="flex items-center justify-between">
-                      <span className="text-[11px] font-bold px-2 py-0.5 rounded" style={{ color: card.tagColor, backgroundColor: card.tagBg }}>{card.tag}</span>
+                      <span className="text-[11px] font-bold px-2.5 py-0.5 rounded" style={{ color: card.tagColor, backgroundColor: card.tagBg }}>{card.tag}</span>
                       <Star size={13} className="text-[#D1D6DB]" />
                     </div>
-                    <p className="text-[13px] font-semibold text-[#333D4B] mt-2 tracking-[-0.01em]">{card.title}</p>
-                    <p className="text-[12px] text-[#8B95A1] mt-0.5">{card.pages}</p>
+                    <p className="text-[14px] font-bold text-[#333D4B] mt-3 tracking-[-0.01em]">{card.title}</p>
+                    <p className="text-[12px] text-[#8B95A1] mt-1">{card.pages}</p>
                   </div>
                 </button>
               ))}
             </div>
           </div>
-        </>
+        </div>
       )}
 
       {/* ===== TOOL VIEW ===== */}
       {view === "tool" && (
-        <main className="w-full max-w-[1400px] mx-auto px-8 sm:px-12 md:px-20 lg:px-32 xl:px-40 py-8">
+        <main className={`${CONTAINER} py-12 flex-1`}>
 
           {/* Breadcrumb */}
-          <button onClick={goHome} className="flex items-center gap-2 text-[14px] text-[#8B95A1] hover:text-[#4E5968] transition-colors mb-6 group">
-            <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform" />
+          <button onClick={goHome} className="flex items-center gap-2 text-[15px] text-[#8B95A1] hover:text-[#4E5968] transition-colors mb-10 group">
+            <ArrowLeft size={17} className="group-hover:-translate-x-1 transition-transform" />
             <span>홈으로 돌아가기</span>
           </button>
 
           {/* Tool Tabs */}
-          <div className="flex gap-2 mb-8 overflow-x-auto pb-1">
+          <div className="flex gap-3 mb-12 overflow-x-auto pb-1">
             {tabs.map((tab) => {
               const Icon = tab.icon;
               const isActive = activeTab === tab.id;
@@ -373,12 +335,12 @@ export default function SuperTeacherDemo() {
                 <button
                   key={tab.id}
                   onClick={() => { setActiveTab(tab.id); handleReset(tab.id); }}
-                  className={`flex items-center gap-2.5 px-5 py-3 rounded-xl text-[14px] font-semibold whitespace-nowrap transition-all ${
-                    isActive ? "text-white shadow-md" : "bg-white text-[#6B7684] border border-[#EAECEF] hover:bg-[#F2F4F6]"
+                  className={`flex items-center gap-2.5 px-6 py-3.5 rounded-xl text-[15px] font-bold whitespace-nowrap transition-all ${
+                    isActive ? "text-white shadow-lg" : "bg-white text-[#6B7684] border border-[#EAECEF] hover:bg-[#F2F4F6]"
                   }`}
                   style={isActive ? { backgroundColor: at.color } : {}}
                 >
-                  <Icon size={16} />
+                  <Icon size={17} />
                   {tab.label}
                 </button>
               );
@@ -386,69 +348,69 @@ export default function SuperTeacherDemo() {
           </div>
 
           {/* Section Title */}
-          <div className="flex items-center gap-3 mb-8">
-            <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ backgroundColor: at.bg }}>
-              <Sparkles size={18} style={{ color: at.color }} />
+          <div className="flex items-center gap-4 mb-12">
+            <div className="w-12 h-12 rounded-xl flex items-center justify-center" style={{ backgroundColor: at.bg }}>
+              <Sparkles size={22} style={{ color: at.color }} />
             </div>
             <div>
-              <h3 className="text-[20px] font-bold text-[#1B1D1F] tracking-[-0.03em]">
+              <h3 className="text-[24px] font-extrabold text-[#1B1D1F] tracking-[-0.04em]">
                 {activeTab === "record" && "핵심 키워드 기반 문구 변환기"}
                 {activeTab === "safety" && "체험학습 사고 예방 시나리오"}
                 {activeTab === "polish" && "공문/메시지 격식 교정기"}
               </h3>
-              <p className="text-[14px] text-[#8B95A1] mt-0.5 tracking-[-0.01em]">{at.desc}</p>
+              <p className="text-[15px] text-[#8B95A1] mt-1 tracking-[-0.01em]">{at.desc}</p>
             </div>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
 
             {/* LEFT: Input */}
-            <div className="space-y-5" key={activeTab + "-input"}>
-              <div className="bg-white rounded-2xl shadow-sm border border-[#EAECEF] p-8 animate-fade-in">
+            <div className="space-y-8" key={activeTab + "-input"}>
+              <div className="bg-white rounded-3xl shadow-sm border border-[#EAECEF] p-10 animate-fade-in">
 
                 {/* Card Header */}
-                <div className="flex items-center justify-between mb-7">
-                  <div className="flex items-center gap-2.5">
-                    <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ backgroundColor: at.bg }}>
-                      {activeTab === "record" && <Edit3 size={15} style={{ color: at.color }} />}
-                      {activeTab === "safety" && <ShieldCheck size={15} style={{ color: at.color }} />}
-                      {activeTab === "polish" && <MessageSquare size={15} style={{ color: at.color }} />}
+                <div className="flex items-center justify-between mb-10">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ backgroundColor: at.bg }}>
+                      {activeTab === "record" && <Edit3 size={18} style={{ color: at.color }} />}
+                      {activeTab === "safety" && <ShieldCheck size={18} style={{ color: at.color }} />}
+                      {activeTab === "polish" && <MessageSquare size={18} style={{ color: at.color }} />}
                     </div>
-                    <span className="text-[17px] font-bold text-[#1B1D1F] tracking-[-0.02em]">
+                    <span className="text-[19px] font-extrabold text-[#1B1D1F] tracking-[-0.03em]">
                       {activeTab === "record" && "학생 정보 입력"}
                       {activeTab === "safety" && "체험학습 정보"}
                       {activeTab === "polish" && "메시지 초안"}
                     </span>
                   </div>
-                  <div className="flex gap-2">
-                    <button onClick={loadSample} className="text-[13px] font-semibold px-4 py-2 rounded-full transition-all hover:shadow-sm" style={{ color: at.color, backgroundColor: at.bg }}>
+                  <div className="flex gap-3">
+                    <button onClick={loadSample} className="text-[13px] font-bold px-5 py-2.5 rounded-full transition-all hover:shadow-sm" style={{ color: at.color, backgroundColor: at.bg }}>
                       예시 불러오기
                     </button>
-                    <button onClick={() => handleReset()} className="text-[13px] text-[#8B95A1] hover:text-[#4E5968] flex items-center gap-1.5 bg-[#F7F8FA] px-4 py-2 rounded-full transition-all">
-                      <RotateCcw size={12} /> 초기화
+                    <button onClick={() => handleReset()} className="text-[13px] text-[#8B95A1] hover:text-[#4E5968] flex items-center gap-1.5 bg-[#F7F8FA] px-5 py-2.5 rounded-full transition-all">
+                      <RotateCcw size={13} /> 초기화
                     </button>
                   </div>
                 </div>
 
                 {/* Record */}
                 {activeTab === "record" && (
-                  <div className="space-y-6">
+                  <div className="space-y-8">
                     <div>
-                      <label className="text-[14px] font-semibold text-[#4E5968] mb-2.5 block tracking-[-0.01em]">학생 성명</label>
+                      <label className="text-[15px] font-bold text-[#4E5968] mb-3 block tracking-[-0.01em]">학생 성명</label>
                       <div className="relative">
-                        <User size={18} className="absolute left-5 top-1/2 -translate-y-1/2 text-[#B0B8C1]" />
+                        <User size={19} className="absolute left-5 top-1/2 -translate-y-1/2 text-[#B0B8C1]" />
                         <input type="text" className={`${inputCls} focus:ring-[#3182F6]/20 focus:border-[#3182F6]`} placeholder="예: 김민준" value={studentName} onChange={(e) => setStudentName(e.target.value)} />
                       </div>
                     </div>
 
                     <div>
-                      <label className="text-[14px] font-semibold text-[#4E5968] mb-3 flex items-center gap-2 tracking-[-0.01em]">
-                        <Tag size={14} /> 영역 선택
+                      <label className="text-[15px] font-bold text-[#4E5968] mb-4 flex items-center gap-2 tracking-[-0.01em]">
+                        <Tag size={15} /> 영역 선택
                       </label>
-                      <div className="flex gap-2.5">
+                      <div className="flex gap-3">
                         {areaOptions.map((a) => (
                           <button key={a.id} onClick={() => { setSelectedArea(a.id); setSelectedKeywords([]); }}
-                            className={`px-6 py-3 rounded-xl text-[14px] font-semibold transition-all tracking-[-0.01em] ${
+                            className={`px-7 py-3.5 rounded-xl text-[15px] font-bold transition-all tracking-[-0.01em] ${
                               selectedArea === a.id ? "text-white shadow-sm" : "bg-[#F2F4F6] text-[#4E5968] hover:bg-[#E5E8EB]"
                             }`}
                             style={selectedArea === a.id ? { backgroundColor: "#3182F6" } : {}}
@@ -458,11 +420,11 @@ export default function SuperTeacherDemo() {
                     </div>
 
                     <div>
-                      <label className="text-[14px] font-semibold text-[#4E5968] mb-3 block tracking-[-0.01em]">핵심 키워드 (복수 선택)</label>
-                      <div className="flex flex-wrap gap-2.5">
+                      <label className="text-[15px] font-bold text-[#4E5968] mb-4 block tracking-[-0.01em]">핵심 키워드 (복수 선택)</label>
+                      <div className="flex flex-wrap gap-3">
                         {(keywordPresets[selectedArea] || []).map((kw) => (
                           <button key={kw} onClick={() => toggleKeyword(kw)}
-                            className={`px-4 py-2.5 rounded-full text-[14px] font-medium transition-all border leading-none tracking-[-0.01em] ${
+                            className={`px-5 py-3 rounded-full text-[14px] font-semibold transition-all border leading-none tracking-[-0.01em] ${
                               selectedKeywords.includes(kw) ? "text-white border-transparent shadow-sm" : "bg-white text-[#4E5968] border-[#E5E8EB] hover:border-[#3182F6] hover:text-[#3182F6]"
                             }`}
                             style={selectedKeywords.includes(kw) ? { backgroundColor: "#3182F6" } : {}}
@@ -472,11 +434,11 @@ export default function SuperTeacherDemo() {
                     </div>
 
                     {selectedKeywords.length > 0 && (
-                      <div className="rounded-2xl p-5" style={{ backgroundColor: "#E8F3FF" }}>
-                        <p className="text-[13px] font-bold mb-1.5" style={{ color: "#3182F6" }}>
+                      <div className="rounded-2xl p-6" style={{ backgroundColor: "#E8F3FF" }}>
+                        <p className="text-[13px] font-bold mb-2" style={{ color: "#3182F6" }}>
                           선택된 키워드 ({selectedKeywords.length}개)
                         </p>
-                        <p className="text-[14px] leading-relaxed tracking-[-0.01em]" style={{ color: "#1B64DA" }}>
+                        <p className="text-[15px] leading-relaxed tracking-[-0.01em]" style={{ color: "#1B64DA" }}>
                           {selectedKeywords.join("  /  ")}
                         </p>
                       </div>
@@ -486,27 +448,27 @@ export default function SuperTeacherDemo() {
 
                 {/* Safety */}
                 {activeTab === "safety" && (
-                  <div className="space-y-6">
+                  <div className="space-y-8">
                     <div>
-                      <label className="text-[14px] font-semibold text-[#4E5968] mb-2.5 block tracking-[-0.01em]">어디로 가시나요?</label>
+                      <label className="text-[15px] font-bold text-[#4E5968] mb-3 block tracking-[-0.01em]">어디로 가시나요?</label>
                       <div className="relative">
-                        <MapPin size={18} className="absolute left-5 top-1/2 -translate-y-1/2 text-[#B0B8C1]" />
+                        <MapPin size={19} className="absolute left-5 top-1/2 -translate-y-1/2 text-[#B0B8C1]" />
                         <input type="text" className={`${inputCls} focus:ring-[#F04452]/20 focus:border-[#F04452]`} placeholder="예: 에버랜드, 북한산" value={location} onChange={(e) => setLocation(e.target.value)} />
                       </div>
                     </div>
                     <div>
-                      <label className="text-[14px] font-semibold text-[#4E5968] mb-2.5 block tracking-[-0.01em]">학생 수</label>
+                      <label className="text-[15px] font-bold text-[#4E5968] mb-3 block tracking-[-0.01em]">학생 수</label>
                       <div className="relative">
-                        <Users size={18} className="absolute left-5 top-1/2 -translate-y-1/2 text-[#B0B8C1]" />
+                        <Users size={19} className="absolute left-5 top-1/2 -translate-y-1/2 text-[#B0B8C1]" />
                         <input type="number" className={`${inputCls} focus:ring-[#F04452]/20 focus:border-[#F04452]`} placeholder="예: 120" value={studentCount} onChange={(e) => setStudentCount(e.target.value)} />
                       </div>
                     </div>
                     <div>
-                      <label className="text-[14px] font-semibold text-[#4E5968] mb-3 block tracking-[-0.01em]">무엇을 하나요? (복수 선택)</label>
-                      <div className="flex flex-wrap gap-2.5">
+                      <label className="text-[15px] font-bold text-[#4E5968] mb-4 block tracking-[-0.01em]">무엇을 하나요? (복수 선택)</label>
+                      <div className="flex flex-wrap gap-3">
                         {activityOptions.map((act) => (
                           <button key={act} onClick={() => toggleActivity(act)}
-                            className={`px-4 py-2.5 rounded-full text-[14px] font-medium transition-all border leading-none tracking-[-0.01em] ${
+                            className={`px-5 py-3 rounded-full text-[14px] font-semibold transition-all border leading-none tracking-[-0.01em] ${
                               selectedActivities.includes(act) ? "text-white border-transparent shadow-sm" : "bg-white text-[#4E5968] border-[#E5E8EB] hover:border-[#F04452] hover:text-[#F04452]"
                             }`}
                             style={selectedActivities.includes(act) ? { backgroundColor: "#F04452" } : {}}
@@ -515,13 +477,13 @@ export default function SuperTeacherDemo() {
                       </div>
                     </div>
                     <div>
-                      <label className="text-[14px] font-semibold text-[#4E5968] mb-3 flex items-center gap-2 tracking-[-0.01em]">
-                        <CloudSun size={14} /> 예상 날씨 (선택)
+                      <label className="text-[15px] font-bold text-[#4E5968] mb-4 flex items-center gap-2 tracking-[-0.01em]">
+                        <CloudSun size={15} /> 예상 날씨 (선택)
                       </label>
-                      <div className="flex gap-2.5">
+                      <div className="flex gap-3">
                         {weatherOptions.map((w) => (
                           <button key={w.id} onClick={() => setSelectedWeather(selectedWeather === w.id ? "" : w.id)}
-                            className={`px-6 py-3 rounded-xl text-[14px] font-semibold transition-all tracking-[-0.01em] ${
+                            className={`px-7 py-3.5 rounded-xl text-[15px] font-bold transition-all tracking-[-0.01em] ${
                               selectedWeather === w.id ? "text-white shadow-sm" : "bg-[#F2F4F6] text-[#4E5968] hover:bg-[#E5E8EB]"
                             }`}
                             style={selectedWeather === w.id ? { backgroundColor: "#F04452" } : {}}
@@ -534,16 +496,16 @@ export default function SuperTeacherDemo() {
 
                 {/* Polish */}
                 {activeTab === "polish" && (
-                  <div className="space-y-6">
-                    <div className="grid grid-cols-2 gap-6">
+                  <div className="space-y-8">
+                    <div className="grid grid-cols-2 gap-8">
                       <div>
-                        <label className="text-[14px] font-semibold text-[#4E5968] mb-3 flex items-center gap-2 tracking-[-0.01em]">
-                          <Mail size={14} /> 수신인
+                        <label className="text-[15px] font-bold text-[#4E5968] mb-4 flex items-center gap-2 tracking-[-0.01em]">
+                          <Mail size={15} /> 수신인
                         </label>
-                        <div className="flex flex-wrap gap-2">
+                        <div className="flex flex-wrap gap-2.5">
                           {recipientOptions.map((r) => (
                             <button key={r} onClick={() => setRecipient(r)}
-                              className={`px-4 py-2 rounded-full text-[13px] font-medium transition-all border tracking-[-0.01em] ${
+                              className={`px-5 py-2.5 rounded-full text-[14px] font-semibold transition-all border tracking-[-0.01em] ${
                                 recipient === r ? "text-white border-transparent" : "bg-white text-[#4E5968] border-[#E5E8EB] hover:border-[#00B493]"
                               }`}
                               style={recipient === r ? { backgroundColor: "#00B493" } : {}}
@@ -552,13 +514,13 @@ export default function SuperTeacherDemo() {
                         </div>
                       </div>
                       <div>
-                        <label className="text-[14px] font-semibold text-[#4E5968] mb-3 flex items-center gap-2 tracking-[-0.01em]">
-                          <Target size={14} /> 목적
+                        <label className="text-[15px] font-bold text-[#4E5968] mb-4 flex items-center gap-2 tracking-[-0.01em]">
+                          <Target size={15} /> 목적
                         </label>
-                        <div className="flex flex-wrap gap-2">
+                        <div className="flex flex-wrap gap-2.5">
                           {purposeOptions.map((p) => (
                             <button key={p} onClick={() => setPurpose(p)}
-                              className={`px-4 py-2 rounded-full text-[13px] font-medium transition-all border tracking-[-0.01em] ${
+                              className={`px-5 py-2.5 rounded-full text-[14px] font-semibold transition-all border tracking-[-0.01em] ${
                                 purpose === p ? "text-white border-transparent" : "bg-white text-[#4E5968] border-[#E5E8EB] hover:border-[#00B493]"
                               }`}
                               style={purpose === p ? { backgroundColor: "#00B493" } : {}}
@@ -568,19 +530,19 @@ export default function SuperTeacherDemo() {
                       </div>
                     </div>
                     <div>
-                      <label className="text-[14px] font-semibold text-[#4E5968] mb-2.5 block tracking-[-0.01em]">초안 입력</label>
+                      <label className="text-[15px] font-bold text-[#4E5968] mb-3 block tracking-[-0.01em]">초안 입력</label>
                       <textarea
-                        className="w-full h-48 p-5 border border-[#E5E8EB] rounded-2xl focus:ring-2 focus:ring-[#00B493]/20 focus:border-[#00B493] focus:outline-none resize-none bg-[#FAFAFB] text-[15px] text-[#1B1D1F] placeholder:text-[#B0B8C1] leading-[2] tracking-[-0.01em] transition-all"
+                        className="w-full h-52 p-6 border border-[#E5E8EB] rounded-2xl focus:ring-2 focus:ring-[#00B493]/20 focus:border-[#00B493] focus:outline-none resize-none bg-[#FAFAFB] text-[16px] text-[#1B1D1F] placeholder:text-[#B0B8C1] leading-[2] tracking-[-0.01em] transition-all"
                         placeholder={"여기에 메모 수준의 초안을 자유롭게 작성하세요...\n\n예: 내일 학부모 상담인데 아이가 수업시간에 좀 산만해서 얘기하고 싶어요"}
                         value={draft}
                         onChange={(e) => setDraft(e.target.value)}
                       />
-                      <div className="flex justify-between items-center mt-3">
-                        <span className="text-[13px] text-[#B0B8C1]">{draft.length}자</span>
-                        <div className="flex items-center gap-2">
+                      <div className="flex justify-between items-center mt-4">
+                        <span className="text-[14px] text-[#B0B8C1]">{draft.length}자</span>
+                        <div className="flex items-center gap-2.5">
                           {toneOptions.map((t) => (
                             <button key={t.id} onClick={() => handleToneChange(t.id)}
-                              className={`px-4 py-2 rounded-full text-[13px] font-semibold transition-all border tracking-[-0.01em] ${
+                              className={`px-5 py-2.5 rounded-full text-[14px] font-bold transition-all border tracking-[-0.01em] ${
                                 tone === t.id ? "text-white border-transparent" : "bg-white text-[#4E5968] border-[#E5E8EB] hover:border-[#00B493]"
                               }`}
                               style={tone === t.id ? { backgroundColor: "#00B493" } : {}}
@@ -597,10 +559,10 @@ export default function SuperTeacherDemo() {
               <button
                 onClick={handleGenerate}
                 disabled={!canGenerate || isGenerating}
-                className="w-full py-4.5 text-white rounded-2xl font-bold flex items-center justify-center gap-2.5 disabled:bg-[#E5E8EB] disabled:text-[#ADB5BD] disabled:cursor-not-allowed transition-all text-[16px] tracking-[-0.02em] disabled:shadow-none hover:brightness-105"
+                className="w-full py-5 text-white rounded-2xl font-extrabold flex items-center justify-center gap-3 disabled:bg-[#E5E8EB] disabled:text-[#ADB5BD] disabled:cursor-not-allowed transition-all text-[17px] tracking-[-0.02em] disabled:shadow-none hover:brightness-105"
                 style={{
                   backgroundColor: canGenerate && !isGenerating ? at.color : undefined,
-                  boxShadow: canGenerate && !isGenerating ? `0 4px 16px ${at.color}30` : undefined,
+                  boxShadow: canGenerate && !isGenerating ? `0 6px 24px ${at.color}30` : undefined,
                 }}
               >
                 {isGenerating ? (
@@ -612,30 +574,30 @@ export default function SuperTeacherDemo() {
                     AI가 생성 중...
                   </>
                 ) : (
-                  <><Send size={18} /> 결과 생성하기</>
+                  <><Send size={20} /> 결과 생성하기</>
                 )}
               </button>
 
               {/* Tip */}
-              <div className="bg-white rounded-2xl border border-[#EAECEF] px-6 py-5 flex items-start gap-4 shadow-sm">
-                <div className="w-8 h-8 rounded-lg bg-[#FFF3E0] flex items-center justify-center shrink-0 mt-0.5">
-                  <span className="text-[11px] font-bold text-[#FF9800]">TIP</span>
+              <div className="bg-white rounded-2xl border border-[#EAECEF] px-7 py-6 flex items-start gap-5 shadow-sm">
+                <div className="w-10 h-10 rounded-xl bg-[#FFF3E0] flex items-center justify-center shrink-0 mt-0.5">
+                  <span className="text-[12px] font-extrabold text-[#FF9800]">TIP</span>
                 </div>
-                <p className="text-[14px] text-[#6B7684] leading-[1.8] tracking-[-0.01em]">{tips[activeTab]}</p>
+                <p className="text-[15px] text-[#6B7684] leading-[1.9] tracking-[-0.01em]">{tips[activeTab]}</p>
               </div>
             </div>
 
             {/* RIGHT: Output */}
-            <div className="space-y-5 animate-fade-in" key={activeTab + "-output"}>
+            <div className="space-y-8 animate-fade-in" key={activeTab + "-output"}>
 
               {/* Empty */}
               {!hasResult && !isGenerating && (
-                <div className="bg-white rounded-2xl border border-[#EAECEF] shadow-sm min-h-[500px] flex flex-col items-center justify-center">
-                  <div className="w-24 h-24 rounded-full flex items-center justify-center mb-6" style={{ backgroundColor: at.bg }}>
-                    <Sparkles size={32} style={{ color: at.color }} className="opacity-40" />
+                <div className="bg-white rounded-3xl border border-[#EAECEF] shadow-sm min-h-[580px] flex flex-col items-center justify-center">
+                  <div className="w-28 h-28 rounded-full flex items-center justify-center mb-7" style={{ backgroundColor: at.bg }}>
+                    <Sparkles size={38} style={{ color: at.color }} className="opacity-40" />
                   </div>
-                  <p className="text-[18px] font-bold text-[#1B1D1F] tracking-[-0.02em]">AI 결과가 여기에 표시됩니다</p>
-                  <p className="text-[14px] text-[#B0B8C1] mt-2 tracking-[-0.01em]">
+                  <p className="text-[20px] font-extrabold text-[#1B1D1F] tracking-[-0.03em]">AI 결과가 여기에 표시됩니다</p>
+                  <p className="text-[15px] text-[#B0B8C1] mt-3 tracking-[-0.01em]">
                     &apos;예시 불러오기&apos;를 눌러 빠르게 체험해 보세요
                   </p>
                 </div>
@@ -643,32 +605,32 @@ export default function SuperTeacherDemo() {
 
               {/* Loading */}
               {isGenerating && (
-                <div className="bg-white rounded-2xl border border-[#EAECEF] shadow-sm min-h-[500px] flex flex-col items-center justify-center">
-                  <div className="flex gap-2.5 mb-5">
-                    <div className="w-3.5 h-3.5 rounded-full animate-bounce" style={{ backgroundColor: at.color, animationDelay: "0ms" }} />
-                    <div className="w-3.5 h-3.5 rounded-full animate-bounce" style={{ backgroundColor: at.color, animationDelay: "150ms" }} />
-                    <div className="w-3.5 h-3.5 rounded-full animate-bounce" style={{ backgroundColor: at.color, animationDelay: "300ms" }} />
+                <div className="bg-white rounded-3xl border border-[#EAECEF] shadow-sm min-h-[580px] flex flex-col items-center justify-center">
+                  <div className="flex gap-3 mb-6">
+                    <div className="w-4 h-4 rounded-full animate-bounce" style={{ backgroundColor: at.color, animationDelay: "0ms" }} />
+                    <div className="w-4 h-4 rounded-full animate-bounce" style={{ backgroundColor: at.color, animationDelay: "150ms" }} />
+                    <div className="w-4 h-4 rounded-full animate-bounce" style={{ backgroundColor: at.color, animationDelay: "300ms" }} />
                   </div>
-                  <p className="text-[16px] text-[#4E5968] tracking-[-0.01em]">AI가 결과를 생성하고 있어요</p>
+                  <p className="text-[17px] text-[#4E5968] tracking-[-0.01em]">AI가 결과를 생성하고 있어요</p>
                 </div>
               )}
 
               {/* Record Results */}
               {activeTab === "record" && recordResults && !isGenerating && (
-                <div className="space-y-5">
+                <div className="space-y-6">
                   <div className="flex items-center justify-between">
-                    <span className="text-[17px] font-bold text-[#1B1D1F] tracking-[-0.02em]">생성 결과</span>
-                    <span className="text-[13px] text-[#8B95A1] bg-[#F2F4F6] px-3 py-1.5 rounded-full">{recordResults.length}개 버전</span>
+                    <span className="text-[19px] font-extrabold text-[#1B1D1F] tracking-[-0.03em]">생성 결과</span>
+                    <span className="text-[13px] text-[#8B95A1] bg-[#F2F4F6] px-4 py-2 rounded-full font-semibold">{recordResults.length}개 버전</span>
                   </div>
                   {recordResults.map((item, idx) => (
-                    <div key={idx} className="bg-white rounded-2xl border border-[#EAECEF] shadow-sm p-7 hover:shadow-md transition-all animate-fade-in" style={{ animationDelay: `${idx * 120}ms` }}>
-                      <div className="flex justify-between items-center mb-4">
-                        <span className="text-[13px] font-bold px-3 py-1.5 rounded-lg" style={{ color: item.color, backgroundColor: item.bg }}>{item.label}</span>
-                        <button onClick={() => handleCopy(item.content, idx)} className="text-[#B0B8C1] hover:text-[#3182F6] flex items-center gap-1.5 text-[13px] font-medium transition-colors tracking-[-0.01em]">
-                          {copiedIdx === idx ? <><Check size={14} className="text-[#00B493]" /> 복사됨</> : <><Copy size={14} /> 복사하기</>}
+                    <div key={idx} className="bg-white rounded-2xl border border-[#EAECEF] shadow-sm p-8 hover:shadow-md transition-all animate-fade-in" style={{ animationDelay: `${idx * 120}ms` }}>
+                      <div className="flex justify-between items-center mb-5">
+                        <span className="text-[14px] font-bold px-4 py-2 rounded-xl" style={{ color: item.color, backgroundColor: item.bg }}>{item.label}</span>
+                        <button onClick={() => handleCopy(item.content, idx)} className="text-[#B0B8C1] hover:text-[#3182F6] flex items-center gap-2 text-[14px] font-semibold transition-colors tracking-[-0.01em]">
+                          {copiedIdx === idx ? <><Check size={16} className="text-[#00B493]" /> 복사됨</> : <><Copy size={16} /> 복사하기</>}
                         </button>
                       </div>
-                      <p className="text-[15px] text-[#333D4B] leading-[2] tracking-[-0.01em]">{item.content}</p>
+                      <p className="text-[16px] text-[#333D4B] leading-[2.1] tracking-[-0.01em]">{item.content}</p>
                     </div>
                   ))}
                 </div>
@@ -676,52 +638,52 @@ export default function SuperTeacherDemo() {
 
               {/* Safety Table */}
               {activeTab === "safety" && safetyResult && !isGenerating && (
-                <div className="space-y-5">
+                <div className="space-y-6">
                   <div className="flex items-center justify-between">
-                    <span className="text-[17px] font-bold text-[#1B1D1F] tracking-[-0.02em]">위험 분석 결과</span>
+                    <span className="text-[19px] font-extrabold text-[#1B1D1F] tracking-[-0.03em]">위험 분석 결과</span>
                     <button
                       onClick={() => {
                         const text = mockSafetyTable.map(r => `[${r.risk}] 위험도: ${r.level}\n사전교육: ${r.prevention}\n사고시 조치: ${r.response}`).join("\n\n") + "\n\n[비상 연락 체계]\n" + mockEmergencyContacts.map(c => `${c.role}: ${c.contact}`).join("\n");
                         handleCopy(text, 99);
                       }}
-                      className="text-[#B0B8C1] hover:text-[#F04452] flex items-center gap-1.5 text-[13px] font-medium transition-colors tracking-[-0.01em]"
+                      className="text-[#B0B8C1] hover:text-[#F04452] flex items-center gap-2 text-[14px] font-semibold transition-colors tracking-[-0.01em]"
                     >
-                      {copiedIdx === 99 ? <><Check size={14} className="text-[#00B493]" /> 복사됨</> : <><Copy size={14} /> 전체 복사</>}
+                      {copiedIdx === 99 ? <><Check size={16} className="text-[#00B493]" /> 복사됨</> : <><Copy size={16} /> 전체 복사</>}
                     </button>
                   </div>
                   <div className="bg-white rounded-2xl border border-[#EAECEF] shadow-sm overflow-hidden animate-fade-in">
                     <table className="w-full">
                       <thead>
                         <tr className="bg-[#FAFAFB]">
-                          <th className="text-left py-4 px-5 text-[13px] font-bold text-[#6B7684] border-b border-[#EAECEF] w-[22%] tracking-[-0.01em]">발생 가능한 위험</th>
-                          <th className="text-left py-4 px-5 text-[13px] font-bold text-[#6B7684] border-b border-[#EAECEF] w-[39%] tracking-[-0.01em]">사전 교육 내용</th>
-                          <th className="text-left py-4 px-5 text-[13px] font-bold text-[#6B7684] border-b border-[#EAECEF] w-[39%] tracking-[-0.01em]">사고 시 조치</th>
+                          <th className="text-left py-5 px-6 text-[14px] font-bold text-[#6B7684] border-b border-[#EAECEF] w-[22%]">발생 가능한 위험</th>
+                          <th className="text-left py-5 px-6 text-[14px] font-bold text-[#6B7684] border-b border-[#EAECEF] w-[39%]">사전 교육 내용</th>
+                          <th className="text-left py-5 px-6 text-[14px] font-bold text-[#6B7684] border-b border-[#EAECEF] w-[39%]">사고 시 조치</th>
                         </tr>
                       </thead>
                       <tbody>
                         {mockSafetyTable.map((row, idx) => (
                           <tr key={idx} className="border-b border-[#F2F4F6] last:border-b-0 hover:bg-[#FAFAFB] transition-colors">
-                            <td className="py-5 px-5 align-top">
-                              <div className="font-semibold text-[14px] text-[#1B1D1F] leading-snug tracking-[-0.01em]">{row.risk}</div>
-                              <span className={`inline-block mt-2 text-[12px] font-bold px-2.5 py-0.5 rounded-full ${
+                            <td className="py-6 px-6 align-top">
+                              <div className="font-bold text-[15px] text-[#1B1D1F] leading-snug">{row.risk}</div>
+                              <span className={`inline-block mt-2.5 text-[12px] font-bold px-3 py-1 rounded-full ${
                                 row.level === "높음" ? "bg-[#FFE8EA] text-[#F04452]" : "bg-[#FFF8E1] text-[#FFA726]"
                               }`}>{row.level}</span>
                             </td>
-                            <td className="py-5 px-5 text-[14px] text-[#4E5968] leading-[1.8] align-top tracking-[-0.01em]">{row.prevention}</td>
-                            <td className="py-5 px-5 text-[14px] text-[#4E5968] leading-[1.8] align-top tracking-[-0.01em]">{row.response}</td>
+                            <td className="py-6 px-6 text-[15px] text-[#4E5968] leading-[1.9] align-top">{row.prevention}</td>
+                            <td className="py-6 px-6 text-[15px] text-[#4E5968] leading-[1.9] align-top">{row.response}</td>
                           </tr>
                         ))}
                       </tbody>
                     </table>
                   </div>
 
-                  <div className="bg-white rounded-2xl border border-[#EAECEF] shadow-sm p-7 animate-fade-in" style={{ animationDelay: "200ms" }}>
-                    <p className="text-[16px] font-bold text-[#1B1D1F] mb-4 tracking-[-0.02em]">비상 연락 체계</p>
-                    <div className="grid grid-cols-2 gap-3">
+                  <div className="bg-white rounded-2xl border border-[#EAECEF] shadow-sm p-8 animate-fade-in" style={{ animationDelay: "200ms" }}>
+                    <p className="text-[17px] font-extrabold text-[#1B1D1F] mb-5 tracking-[-0.02em]">비상 연락 체계</p>
+                    <div className="grid grid-cols-2 gap-3.5">
                       {mockEmergencyContacts.map((c, idx) => (
-                        <div key={idx} className="flex items-center gap-3 bg-[#FAFAFB] rounded-xl px-5 py-3.5">
-                          <span className="text-[13px] font-semibold text-[#6B7684] shrink-0 tracking-[-0.01em]">{c.role}</span>
-                          <span className="text-[14px] text-[#1B1D1F] tracking-[-0.01em]">{c.contact}</span>
+                        <div key={idx} className="flex items-center gap-4 bg-[#FAFAFB] rounded-xl px-6 py-4">
+                          <span className="text-[14px] font-bold text-[#6B7684] shrink-0">{c.role}</span>
+                          <span className="text-[15px] text-[#1B1D1F]">{c.contact}</span>
                         </div>
                       ))}
                     </div>
@@ -731,21 +693,21 @@ export default function SuperTeacherDemo() {
 
               {/* Polish Result */}
               {activeTab === "polish" && polishResult && !isGenerating && (
-                <div className="space-y-5">
+                <div className="space-y-6">
                   <div className="flex items-center justify-between">
-                    <span className="text-[17px] font-bold text-[#1B1D1F] tracking-[-0.02em]">교정 결과</span>
-                    <button onClick={() => handleCopy(polishResult, 0)} className="text-[#B0B8C1] hover:text-[#00B493] flex items-center gap-1.5 text-[13px] font-medium transition-colors tracking-[-0.01em]">
-                      {copiedIdx === 0 ? <><Check size={14} className="text-[#00B493]" /> 복사됨</> : <><Copy size={14} /> 전체 복사</>}
+                    <span className="text-[19px] font-extrabold text-[#1B1D1F] tracking-[-0.03em]">교정 결과</span>
+                    <button onClick={() => handleCopy(polishResult, 0)} className="text-[#B0B8C1] hover:text-[#00B493] flex items-center gap-2 text-[14px] font-semibold transition-colors tracking-[-0.01em]">
+                      {copiedIdx === 0 ? <><Check size={16} className="text-[#00B493]" /> 복사됨</> : <><Copy size={16} /> 전체 복사</>}
                     </button>
                   </div>
-                  <div className="bg-white rounded-2xl border border-[#EAECEF] shadow-sm p-8 animate-fade-in">
-                    <p className="text-[15px] text-[#333D4B] leading-[2.1] whitespace-pre-wrap tracking-[-0.01em]">{polishResult}</p>
+                  <div className="bg-white rounded-2xl border border-[#EAECEF] shadow-sm p-10 animate-fade-in">
+                    <p className="text-[16px] text-[#333D4B] leading-[2.2] whitespace-pre-wrap tracking-[-0.01em]">{polishResult}</p>
                   </div>
                 </div>
               )}
 
               {hasResult && !isGenerating && (
-                <p className="text-[13px] text-[#B0B8C1] text-center mt-1 tracking-[-0.01em]">
+                <p className="text-[14px] text-[#B0B8C1] text-center mt-2 tracking-[-0.01em]">
                   AI가 생성한 결과입니다. 최종 사용 전 반드시 내용을 검토해 주세요.
                 </p>
               )}
@@ -756,9 +718,9 @@ export default function SuperTeacherDemo() {
 
       {/* ===== Footer ===== */}
       <footer className="bg-white border-t border-[#EAECEF] mt-auto">
-        <div className="w-full max-w-[1400px] mx-auto px-8 sm:px-12 md:px-20 lg:px-32 xl:px-40 py-8 flex items-center justify-between">
-          <p className="text-[13px] text-[#B0B8C1] tracking-[-0.01em]">&copy; 2026 Teacher Tools - AI 기반 교사 업무 도우미 (Demo)</p>
-          <p className="text-[12px] text-[#D1D6DB] tracking-[-0.01em]">Powered by AI</p>
+        <div className={`${CONTAINER} py-10 flex items-center justify-between`}>
+          <p className="text-[14px] text-[#B0B8C1] tracking-[-0.01em]">&copy; 2026 Teacher Tools - AI 기반 교사 업무 도우미 (Demo)</p>
+          <p className="text-[13px] text-[#D1D6DB] tracking-[-0.01em]">Powered by AI</p>
         </div>
       </footer>
     </div>
