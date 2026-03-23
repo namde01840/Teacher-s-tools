@@ -26,7 +26,7 @@ import {
 type TabId = "record" | "safety" | "polish";
 type ViewMode = "home" | "tool";
 
-const CONTAINER = "w-full max-w-[1200px] mx-auto px-6 sm:px-10 md:px-16 lg:px-20";
+const CONTAINER = "w-[92%] sm:w-[88%] md:w-[82%] lg:w-[75%] xl:w-[70%] max-w-[1100px] mx-auto";
 
 const tabs = [
   { id: "record" as TabId, label: "생기부 문구 변환", sub: "생기부", desc: "핵심 키워드로 생기부 문구를 자동 생성합니다", icon: Edit3, color: "#3182F6", bg: "#E8F3FF", cardBg: "from-[#E8F3FF] to-[#D4E8FF]" },
